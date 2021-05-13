@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class InputField : MonoBehaviour
 {
-    public int coloumn;
+    public int column;
 
     public GameManager gm;
 
     void OnMouseDown()
     {
-        Debug.Log("Coloumn number is " + coloumn);
-    }
+        gm.SelectColumn(column);
 }
+}
+
 

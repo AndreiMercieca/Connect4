@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b3441427330f743b757b01c5085bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coloumn: 0
+  column: 0
   gm: {fileID: 787881435}
 --- !u!1 &519420028
 GameObject:
@@ -495,8 +495,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugStartMessage: Start Message!
-  RedDisc: {fileID: 0}
-  YellowDisc: {fileID: 0}
+  RedDisc: {fileID: 3934133206139513886, guid: 39fc43fc2887b844498e23d4153ac397, type: 3}
+  YellowDisc: {fileID: 5412109126183116004, guid: 4b912b1d71c146a45b7eb0e676867477, type: 3}
   spawnLoc:
   - {fileID: 1456097035}
   - {fileID: 1670624703}
@@ -709,7 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b3441427330f743b757b01c5085bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coloumn: 2
+  column: 2
   gm: {fileID: 787881435}
 --- !u!1 &985776125
 GameObject:
@@ -849,7 +849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b3441427330f743b757b01c5085bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coloumn: 1
+  column: 1
   gm: {fileID: 787881435}
 --- !u!1 &1456097035
 GameObject:
@@ -989,7 +989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b3441427330f743b757b01c5085bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coloumn: 5
+  column: 5
   gm: {fileID: 787881435}
 --- !u!1 &1581829478
 GameObject:
@@ -1105,7 +1105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676670066}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.5511107, y: 0.56657344, z: -7.826211}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1456097036}
@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b3441427330f743b757b01c5085bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coloumn: 3
+  column: 3
   gm: {fileID: 787881435}
 --- !u!1 &1927897628
 GameObject:
@@ -1336,7 +1336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b3441427330f743b757b01c5085bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coloumn: 4
+  column: 4
   gm: {fileID: 787881435}
 --- !u!1 &2038176203
 GameObject:
@@ -1446,7 +1446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b3441427330f743b757b01c5085bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coloumn: 6
+  column: 6
   gm: {fileID: 787881435}
 --- !u!1 &2092018957
 GameObject:

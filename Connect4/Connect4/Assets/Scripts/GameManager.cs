@@ -10,9 +10,9 @@ public class GameManager : MonoBehaviour
     public GameObject RedDisc;
     public GameObject YellowDisc;
 
-    internal void SelectColumn(object column)
+    public void SelectColumn(object column)
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException("Edit mode support not implemented yet.");
     }
 
     public GameObject[] spawnLoc;
@@ -31,13 +31,13 @@ public class GameManager : MonoBehaviour
     
     }
 
-    public void SelectColoumn(int coloumn)
+    public void SelectColoumn(int column)
     {
-    Debug.Log("GameManager Coloumn" + coloumn );
+    Debug.Log("GameManager Column" + column );
     }
 
-    void TakeTurn(int coloumn)
+    void TakeTurn(int column)
     {
-        Instantiate(RedDisc,spawnLoc[coloumn].transform.position,Quaternion.identity);
+        Instantiate(RedDisc,spawnLoc[column].transform.position,Quaternion.identity);
     }
 }
