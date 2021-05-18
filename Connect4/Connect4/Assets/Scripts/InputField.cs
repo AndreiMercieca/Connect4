@@ -11,7 +11,7 @@ public class InputField : MonoBehaviour
     void OnMouseDown()
     {
         gm.SelectColumn(column);
-}
+    }
 }
 
 
