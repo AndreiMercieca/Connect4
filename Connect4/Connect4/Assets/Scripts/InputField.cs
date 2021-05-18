@@ -12,6 +12,10 @@ public class InputField : MonoBehaviour
     {
         gm.SelectColumn(column);
     }
-}
 
+void OnMouseOver()
+    {
+    gm.HoverColumn(column);
+    }
+}
 

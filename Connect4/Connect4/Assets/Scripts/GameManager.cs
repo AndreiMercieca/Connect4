@@ -9,11 +9,15 @@ public class GameManager : MonoBehaviour
     public GameObject RedDisc;
     public GameObject YellowDisc;
 
+    public GameObject player1ghost;
+    public GameObject player2ghost;
+
 public int heightOfBoard = 6;
 public int lengthOfBoard = 7;
 
 public GameObject[] spawnLoc;
 
+GameObject fallingPiece;
 bool RedDiscturn = true;
 
 int[,] boardState; //0 is empty , 1 is RedDisc , 2 is YellowDisc
@@ -32,10 +36,29 @@ int[,] boardState; //0 is empty , 1 is RedDisc , 2 is YellowDisc
        // Debug.LogWarning("Warning");
     
     boardState = new int[lengthOfBoard, heightOfBoard];
+    
+    player1ghost.SetActive(false);
+    player2ghost.SetActive(false);
     }
+
+    public void HoverColumn(int column)
+    {
+        if (boardState[column, heightOfBoard-1]==0 && fallingPiece == null ||   fallingPiece.GetComponent<Rigidbody>().velocity == Vector3.zero)
+        
+        if (RedDiscturn)
+        {
+        player1ghost.SetActive(true);
+            player1ghost.transform.position = spawnLoc[column].transform.position;
+                }else{
+            player2ghost.SetActive(true);
+            player2ghost.transform.position = spawnLoc[column].transform.position;
+        }
+        }
 
     public void SelectColumn(int column)
     {
+        if (fallingPiece == null ||   fallingPiece.GetComponent<Rigidbody>().velocity == Vector3.zero)
+        
     //Debug.Log("GameManager Column" + column );
     TakeTurn(column);
     }
@@ -44,14 +67,21 @@ int[,] boardState; //0 is empty , 1 is RedDisc , 2 is YellowDisc
     {
         if (updateboardState(column))
         {
+        player1ghost.SetActive(false);
+        player2ghost.SetActive(false);
+
+
+
 if (RedDiscturn)
         {
-            Instantiate(RedDisc,spawnLoc[column].transform.position,Quaternion.identity);
+            fallingPiece = Instantiate(RedDisc,spawnLoc[column].transform.position,Quaternion.identity);
+            fallingPiece.GetComponent<Rigidbody>().velocity = new Vector3(0, 0.1f,0);
             RedDiscturn = false;
         }
         else
         {
             Instantiate(YellowDisc,spawnLoc[column].transform.position,Quaternion.identity);
+            fallingPiece.GetComponent<Rigidbody>().velocity = new Vector3(0, 0.1f,0);
             RedDiscturn = true;
         }
     }
