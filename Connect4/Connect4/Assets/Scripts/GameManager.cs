@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public string debugStartMessage;
 
+    public GameObject WinCircle;    
     public GameObject RedDisc;
     public GameObject YellowDisc;
 
@@ -89,9 +90,15 @@ public class GameManager : MonoBehaviour
                     Debug.LogWarning("Player 2  Won!");
                 }
             }
+
+
+
+            if (DidDraw())
+            {
+                Debug.LogWarning("Draw!");
+            }
         }
     }
-
 
     bool updateboardState(int column)
     {  
@@ -107,7 +114,7 @@ public class GameManager : MonoBehaviour
                 {
                     boardState[column, row] = 2;
                 }
-                Debug.Log("Piece being spawned at (" + column + ", " + row + ")");
+                //Debug.Log("Piece being spawned at (" + column + ", " + row + ")");
                 return true;
             }
         }
@@ -124,6 +131,7 @@ public class GameManager : MonoBehaviour
             {
                 if (boardState [x+0, y] == playerNum && boardState[x+1, y] == playerNum && boardState[x+ 2, y] == playerNum && boardState[x+ 3, y] == playerNum)
                 {
+                    Instantiate(WinCircle,new Vector3(x, y + 0),Quaternion.identity);
                     return true;
                 }
             }
@@ -135,6 +143,7 @@ public class GameManager : MonoBehaviour
             {
                 if (boardState[x,y] == playerNum && boardState[x, y + 1] == playerNum && boardState[x, y + 2] == playerNum && boardState[x, y + 3] == playerNum)
                 {
+                    Instantiate(WinCircle,new Vector3(x, y ,0),Quaternion.identity);
                     return true;
                 }
             }
@@ -146,6 +155,7 @@ public class GameManager : MonoBehaviour
             {
                 if (boardState[x,y] == playerNum && boardState[x + 1, y + 1] == playerNum && boardState[x + 2, y + 2] == playerNum && boardState[x + 3, y + 3] == playerNum)
                 {
+                    Instantiate(WinCircle,new Vector3(x, y ,0),Quaternion.identity);
                     return true;
                 }
             }
@@ -157,13 +167,28 @@ public class GameManager : MonoBehaviour
             {
                 if (boardState[x,y + 3] == playerNum && boardState[x + 1, y + 2] == playerNum && boardState[x + 2, y + 1] == playerNum && boardState[x + 3, y] == playerNum)
                 {
+                    Instantiate(WinCircle,new Vector3(x, y ,0),Quaternion.identity);
                     return true;
                 }
             }
         }
             return false;
     }
+
+
+    bool DidDraw()
+{
+        for (int x = 0; x< lengthOfBoard; x++)
+            if (boardState[x, heightOfBoard -1] == 0)
+            {
+                    return false;
+            }
+{
+                return true;
 }
+
+        }
+    }
 
 
 
