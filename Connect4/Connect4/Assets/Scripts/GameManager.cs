@@ -2,11 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public string debugStartMessage;
 
-    public GameObject WinCircle;    
+    public GameObject WinScreen;
+    public Text winText;
+
+
     public GameObject RedDisc;
     public GameObject YellowDisc;
 
@@ -20,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     GameObject fallingPiece;
     bool RedDiscturn = true;
+
+    bool playerWon =false;
 
     int[,] boardState; //0 is empty , 1 is RedDisc , 2 is YellowDisc
 
@@ -39,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void HoverColumn(int column)
     {
-        if (boardState[column, heightOfBoard-1]==0 && fallingPiece == null ||   fallingPiece.GetComponent<Rigidbody>().velocity == Vector3.zero)
+        if (boardState[column, heightOfBoard-1]==0 && fallingPiece == null ||   fallingPiece.GetComponent<Rigidbody>().velocity == Vector3.zero && !playerWon)
         {
             if (RedDiscturn)
             {
@@ -56,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     public void SelectColumn(int column)
     {
-        if (fallingPiece == null ||   fallingPiece.GetComponent<Rigidbody>().velocity == Vector3.zero)
+        if (fallingPiece == null ||   fallingPiece.GetComponent<Rigidbody>().velocity == Vector3.zero && !playerWon)
         {
         //Debug.Log("GameManager Column" + column );
             TakeTurn(column);
@@ -77,7 +84,11 @@ public class GameManager : MonoBehaviour
                 RedDiscturn = false;
                 if (DidWin(1))
                 {
-                    Debug.LogWarning("Player 1  Won!");
+                    playerWon = true;
+                    WinScreen.SetActive(true);
+                    //Debug.LogWarning("Player 1 Won!");
+                    winText.text = "Player 1 Won!";
+                    winText.color = Color.red;
                 }
             }
             else
@@ -87,7 +98,12 @@ public class GameManager : MonoBehaviour
                 RedDiscturn = true;
                 if (DidWin(2))
                 {
-                    Debug.LogWarning("Player 2  Won!");
+                    playerWon = true;
+                    WinScreen.SetActive(true);
+                    //Debug.LogWarning("Player 2 Won!");
+                    winText.text = "Player 2 Won!";
+                    winText.color = Color.yellow;
+
                 }
             }
 
@@ -95,7 +111,9 @@ public class GameManager : MonoBehaviour
 
             if (DidDraw())
             {
+                playerWon = true;
                 Debug.LogWarning("Draw!");
+                winText.text = "Draw!";
             }
         }
     }
@@ -131,7 +149,7 @@ public class GameManager : MonoBehaviour
             {
                 if (boardState [x+0, y] == playerNum && boardState[x+1, y] == playerNum && boardState[x+ 2, y] == playerNum && boardState[x+ 3, y] == playerNum)
                 {
-                    Instantiate(WinCircle,new Vector3(x, y + 0),Quaternion.identity);
+                    
                     return true;
                 }
             }
@@ -143,7 +161,7 @@ public class GameManager : MonoBehaviour
             {
                 if (boardState[x,y] == playerNum && boardState[x, y + 1] == playerNum && boardState[x, y + 2] == playerNum && boardState[x, y + 3] == playerNum)
                 {
-                    Instantiate(WinCircle,new Vector3(x, y ,0),Quaternion.identity);
+                    
                     return true;
                 }
             }
@@ -155,7 +173,7 @@ public class GameManager : MonoBehaviour
             {
                 if (boardState[x,y] == playerNum && boardState[x + 1, y + 1] == playerNum && boardState[x + 2, y + 2] == playerNum && boardState[x + 3, y + 3] == playerNum)
                 {
-                    Instantiate(WinCircle,new Vector3(x, y ,0),Quaternion.identity);
+                    
                     return true;
                 }
             }
@@ -167,7 +185,7 @@ public class GameManager : MonoBehaviour
             {
                 if (boardState[x,y + 3] == playerNum && boardState[x + 1, y + 2] == playerNum && boardState[x + 2, y + 1] == playerNum && boardState[x + 3, y] == playerNum)
                 {
-                    Instantiate(WinCircle,new Vector3(x, y ,0),Quaternion.identity);
+                    
                     return true;
                 }
             }
@@ -186,10 +204,18 @@ public class GameManager : MonoBehaviour
 {
                 return true;
 }
-
-        }
     }
+public void ExitGame()
+{
+    Application.Quit();
+    Debug.LogWarning("Quitting Game");
+}
 
+public void RestartGame()
+{
+    SceneManager.LoadScene(0);
+}
+}
 
 
 
